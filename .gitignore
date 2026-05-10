@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+
+# Episodes pending public release — un-ignore at video upload time
+# (see memory project_ep_b_two_folder_split.md)
+/ep_b_demo_split/
+/ep_b_demo_session/
