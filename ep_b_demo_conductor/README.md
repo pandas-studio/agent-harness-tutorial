@@ -2,7 +2,7 @@
 
 > EP B 영상 라이브 데모 재현. **Claude (PM)** 가 `gemini` (Generator) 와 `codex` (Critic) 를 N-round adversarial 토론에 동원. 화면은 가로 3-pane — 좌측 Claude, 중앙 generator 산물, 우측 critic 산물.
 
-🎬 **영상**: (TODO — EP B 업로드 후 채움)
+🎬 **영상**: [(유튜브 영상)](https://youtu.be/YQpOHWToek0)
 
 **사전 준비**: Claude Code · Codex · Gemini 모두 설치/인증 → [SETUP.md](../SETUP.md)
 
@@ -133,7 +133,7 @@ Claude 안에서:
 
 ---
 
-## 산물 위치
+## 출력물 위치
 
 ```
 /tmp/ep-b-conductor-demo/.debate-conductor/log/<team>/
@@ -151,15 +151,3 @@ Claude 안에서:
 각 round file 첫 줄에 `<!-- debate-round: N role model -->` machine-readable marker 가 있고, `ls -la` 시 hidden `.round-N-*.done` sidecar 가 보일 수 있다 — `/continue` 가 어느 round 까지 완료됐는지 안전하게 추적하기 위한 device. transcript 본문엔 영향 없음 (마지막 줄은 여전히 critic 의 `Verdict: ...`).
 
 다른 워크스페이스로 옮기거나 `DEBATE_LOG_DIR` 로 override 가능.
-
----
-
-## 자주 막히는 곳
-
-- `/debate-conductor:bootstrap` 이 "not in tmux" 에러 — 먼저 `tmux new-session -s debate` 후 `claude`.
-- 중앙·우측 pane 이 "waiting for debate to start..." 에서 안 움직임 — 정상. `/run` 호출 직후 파일이 생기면 흘러내림.
-- `ask-generator: gemini: command not found` — `gemini` CLI 인증 안 됨. [SETUP.md](../SETUP.md).
-
-## 비교 — split variant
-
-같은 토론을 셸 직접 호출로 보고 싶으면 sibling 시드 [`ep_b_demo_split`](../ep_b_demo_split) — `debate.sh` 를 사용자가 좌측 셸에서 직접 친다. Conductor 변형은 그 위에 Claude PM layer 를 얹은 것.
